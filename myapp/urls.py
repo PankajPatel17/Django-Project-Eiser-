@@ -1,0 +1,42 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('',views.index,name='index'),
+    path('category/',views.category,name='category'),
+    path('single-product/',views.single_product,name='single-product'),
+    path('checkout/',views.checkout,name='checkout'),
+    path('blog/',views.blog,name='blog'),
+    path('single-blog/',views.single_blog,name='single-blog'),
+    path('tracking/',views.tracking,name='tracking'),
+    path('elements/',views.elements,name='elements'),
+    path('contact/',views.contact,name='contact'),
+    path('signup/',views.signup,name='signup'),
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout'),
+    path('profile/',views.profile,name='profile'),
+    path('change-password/',views.change_password,name='change-password'),
+    path('forgot-password/',views.forgot_password,name='forgot-password'),
+    path('verify-otp/',views.verify_otp,name='verify-otp'),
+    path('seller-index/',views.seller_index,name='seller-index'),
+    path('add-product/',views.add_product,name='add-product'),
+    path('view-product/',views.view_product,name='view-product'),
+    path('seller-product-detail/<int:pk>/',views.seller_product_detail,name='seller-product-detail'),
+    path('seller-product-edit/<int:pk>/',views.seller_product_edit,name='seller-product-edit'),
+    path('seller-product-delete/<int:pk>/',views.seller_product_delete,name='seller-product-delete'),
+    path('product-by-category/<str:cat>/',views.product_by_category,name='product-by-category'),
+    path('product-detail/<int:pk>/',views.product_detail,name='product-detail'),
+    path('add-to-wishlist/<int:pk>/',views.add_to_wishlist,name='add-to-wishlist'),
+    path('wishlist/',views.wishlist,name='wishlist'),
+    path('remove-from-wishlist/<int:pk>/',views.remove_from_wishlist,name='remove-from-wishlist'),
+    path('add-to-cart/<int:pk>/',views.add_to_cart,name='add-to-cart'),
+    path('cart/',views.cart,name='cart'),
+    path('remove-from-cart/<int:pk>/',views.remove_from_cart,name='remove-from-cart'),
+    path('change-qty/',views.change_qty,name='change-qty'),
+    path('create-checkout-sesssion/',views.create_checkout_session,name='create-checkout-sesssion'),
+    path('success/',views.success,name='success'),
+    path('cancel/',views.cancel,name='cancel'),
+    path('ajax/validate_email/',views.validate_signup,name='validate_email'),
+
+
+]

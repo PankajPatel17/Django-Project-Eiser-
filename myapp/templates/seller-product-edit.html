@@ -1,0 +1,174 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Seller Page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /*body {
+            font-family: Arial, sans-serif;
+            margin: 100px;
+            padding: 100px;
+            background-color: #f4f4f4;
+        }*/
+       /*.container {
+            max-width: 100px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }*/
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Add Product</h1>
+    <form action="{% url 'seller-product-edit' pk=product.pk %}" method="POST" enctype="multipart/form-data">
+         {% if msg %}
+            <b style="color: blue;">{{msg}}</b>
+          {% endif %}
+        {% csrf_token %}
+        <div class="row">
+        <div class="col-sm-12">
+                <div class="form-group">
+                  <select name="product_category" class="form-control">
+                  {% if product.product_category == "Men" %}
+                      <option>--Select Product Category--</option>
+                      <option value="Men" selected>Men</option>
+                      <option value="Women">Women</option>
+                      <option value="Kids">Kids</option>
+                  {% elif product.product_category == "Women" %}
+                      <option>--Select Product Category--</option>
+                      <option value="Men">Men</option>
+                      <option value="Women" selected>Women</option>
+                      <option value="Kids">Kids</option>
+                  {% elif product.product_category == "Kids" %}
+                      <option>--Select Product Category--</option>
+                      <option value="Men">Men</option>
+                      <option value="Women">Women</option>
+                      <option value="Kids" selected>Kids</option>
+                  {% endif %}
+
+                  
+                </select>
+              </div>
+        </div>
+        
+        <div class="col-sm-12">
+                <div class="form-group">
+                  <select name="product_size" class="form-control">
+                  {% if product.product_size == "S" %}
+                      <option>--Select Product Size--</option>
+                      <option value="S" selected>S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                  {% elif product.product_size == "M" %}
+                      <option>--Select Product Size--</option>
+                      <option value="S">S</option>
+                      <option value="M" selected>M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                  {% elif product.product_size == "L" %}
+                      <option>--Select Product Size--</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L" selected>L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                  {% elif product.product_size == "XL" %}
+                      <option>--Select Product Size--</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL" selected>XL</option>
+                      <option value="XXL">XXL</option>
+                  {% elif product.product_size == "XXL" %}
+                      <option>--Select Product Size--</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL" selected>XXL</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>
+       
+        <div class="col-sm-12">
+                <div class="form-group">  
+                <label for="product-title">Product Title</label>
+                <input type="text" id="product-title" name="product_name" placeholder="Enter Product Name"  value="{{product.product_name}}">
+                </div>
+        </div>
+       
+        <div class="col-sm-12">
+             <div class="form-group">
+                <label for="product-description">Description</label>
+                <textarea id="product-description" name="product_desc" rows="4" placeholder="Enter Product Description" >{{product.product_desc}}</textarea>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="product-price">Price</label>
+                <input type="number" id="product-price" name="product_price" placeholder="Enter Product Price " value="{{product.product_price}}">
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="product-image">Upload Image</label>
+                <img src="{{product.product_image.url}}" style="width: 100px;height: 100px;">
+                <input type="file" id="product_image" name="product_image" accept="image/*">
+            </div>
+        </div>
+        <div class="fbtn-lg btn-block">
+        <button type="submit">Update Product</button>
+        </div>
+ </div>
+    </form>
+</div>
+
+</body>
+</html>
+{% endblock %}
